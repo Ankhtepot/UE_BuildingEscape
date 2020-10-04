@@ -45,42 +45,36 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	}
 }
 
-void UOpenDoor::OpenDoor(float DeltaTime) 
+void UOpenDoor::OpenDoor(const float DeltaTime) 
 {
-	float targetRotationYaw = InitialDoorRotation + OpenAngle - OpenCloseAngleTolerance;
-	// if (PressurePlate->IsOverlappingActor(ActorThatOpen) && GetOwner()->GetActorRotation().Yaw < targetRotationYaw)
-	if (TotalMassOfActors() > MassToOpenDoor && GetOwner()->GetActorRotation().Yaw < targetRotationYaw)
+	const float TargetRotationYaw = InitialDoorRotation + OpenAngle - OpenCloseAngleTolerance;
+	
+	if (TotalMassOfActors() > MassToOpenDoor && GetOwner()->GetActorRotation().Yaw < TargetRotationYaw)
 	{
-
-		float CurrentRotationYaw = GetOwner()->GetActorRotation().Yaw;
-		if (CurrentRotationYaw < targetRotationYaw - OpenCloseAngleTolerance)
+		const float CurrentRotationYaw = GetOwner()->GetActorRotation().Yaw;
+		if (CurrentRotationYaw < TargetRotationYaw - OpenCloseAngleTolerance)
 		{
-			LastTimeOpenned = GetWorld()->GetTimeSeconds();
-			//UE_LOG(LogTemp, Warning, TEXT("[Open Door]: LastTimeOpenned: %f."), LastTimeOpenned);
+			LastTimeOpened = GetWorld()->GetTimeSeconds();
 		}
 
-		//float newYaw = FMath::Lerp(CurrentRot ationYaw, InitialDoorRotation + TargetYaw, DeltaTime * 1.f);
-		float newYaw = FMath::FInterpTo(CurrentRotationYaw, InitialDoorRotation + OpenAngle, DeltaTime, SpeedInterpTo);
+		//float newYaw = FMath::Lerp(CurrentRotationYaw, InitialDoorRotation + TargetYaw, DeltaTime * 1.f);
+		const float NewYaw = FMath::FInterpTo(CurrentRotationYaw, InitialDoorRotation + OpenAngle, DeltaTime, SpeedInterpTo);
 
-		GetOwner()->SetActorRotation(FRotator(0.f, newYaw, 0.f));
+		GetOwner()->SetActorRotation(FRotator(0.f, NewYaw, 0.f));
 	}	
 }
 
-void UOpenDoor::CloseDoor(float DeltaTime)
+void UOpenDoor::CloseDoor(const float DeltaTime)
 {
-	// if (GetWorld()->GetTimeSeconds() - LastTimeOpenned > DoorCloseDelay
-	// 	&& !PressurePlate->IsOverlappingActor(ActorThatOpen) 
-	// 	&& GetOwner()->GetActorRotation().Yaw > InitialDoorRotation + OpenCloseAngleTollerance)
-	if (GetWorld()->GetTimeSeconds() - LastTimeOpenned > DoorCloseDelay
+	if (GetWorld()->GetTimeSeconds() - LastTimeOpened > DoorCloseDelay
 		&& TotalMassOfActors() < MassToOpenDoor
 		&& GetOwner()->GetActorRotation().Yaw > InitialDoorRotation + OpenCloseAngleTolerance)
 	{
-		LastTimeOpenned = 0.f;
-		float CurrentRotationYaw = GetOwner()->GetActorRotation().Yaw;
-		//float newYaw = FMath::Lerp(CurrentRot ationYaw, InitialDoorRotation + TargetYaw, DeltaTime * 1.f);
-		float newYaw = FMath::FInterpTo(CurrentRotationYaw, InitialDoorRotation, DeltaTime, SpeedInterpTo * CloseDoorSpeedMultiplier);
+		LastTimeOpened = 0.f;
+		const float CurrentRotationYaw = GetOwner()->GetActorRotation().Yaw;
+		const float NewYaw = FMath::FInterpTo(CurrentRotationYaw, InitialDoorRotation, DeltaTime, SpeedInterpTo * CloseDoorSpeedMultiplier);
 
-		GetOwner()->SetActorRotation(FRotator(0.f, newYaw, 0.f));
+		GetOwner()->SetActorRotation(FRotator(0.f, NewYaw, 0.f));
 	}
 }
 

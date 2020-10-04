@@ -53,7 +53,7 @@ void UGrabber::FindPhysicsHandle()
 {
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
 
-	if (PhysicsHandle == nullptr)
+	if (!PhysicsHandle)
 	{
 		LogError(GetOwner()->GetName() + ": Physics handle not found.");
 	}
@@ -63,7 +63,7 @@ void UGrabber::SetupInputComponent()
 {
 	InputComponent = GetOwner()->FindComponentByClass<UInputComponent>();
 
-	if (InputComponent == nullptr)
+	if (!InputComponent)
 	{
 		LogError(GetOwner()->GetName() + ": Physics handle not found.");
 		return;
@@ -75,10 +75,11 @@ void UGrabber::SetupInputComponent()
 
 void UGrabber::Grab()
 {
-	FHitResult Hit = GetFirstPhysicsBodyInReach();
+	const FHitResult Hit = GetFirstPhysicsBodyInReach();
 	UPrimitiveComponent* ComponentToGrab = Hit.GetComponent();
+	AActor* ActorHit = Hit.GetActor();
 
-	if (Hit.GetActor())
+	if (ActorHit)
 	{
 		PhysicsHandle->GrabComponentAtLocation
 		(
@@ -102,9 +103,9 @@ void UGrabber::ReleaseGrab()
 	}
 }
 
-PlayerReachInfo UGrabber::GetPlayerReachInfo() const
+FPlayerReachInfo UGrabber::GetPlayerReachInfo() const
 {
-	PlayerReachInfo NewInfo;
+	FPlayerReachInfo NewInfo;
     GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(
         OUT NewInfo.PlayerViewPointLocation,
         OUT NewInfo.PlayerViewPointRotation
@@ -132,7 +133,7 @@ FHitResult UGrabber::GetFirstPhysicsBodyInReach() const
 
 	FHitResult Hit;
 	FCollisionQueryParams TraceParams(FName(TEXT("")), false, GetOwner());
-	PlayerReachInfo ReachInfo = GetPlayerReachInfo();
+	FPlayerReachInfo ReachInfo = GetPlayerReachInfo();
 
 	GetWorld()->LineTraceSingleByObjectType(
         OUT Hit,

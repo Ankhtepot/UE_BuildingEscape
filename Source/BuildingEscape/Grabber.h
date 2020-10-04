@@ -7,11 +7,11 @@
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "Grabber.generated.h"
 
-struct PlayerReachInfo
+struct FPlayerReachInfo
 {
-	FVector Reach;
 	FVector PlayerViewPointLocation;
 	FRotator PlayerViewPointRotation;
+	FVector Reach;
 };
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -32,7 +32,7 @@ protected:
 
 private:
 	UPROPERTY(EditAnywhere)
-		float Reach = 200.f;
+		float Reach = 300.f;
 	
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 	UInputComponent* InputComponent = nullptr;
@@ -43,5 +43,5 @@ private:
 	void SetupInputComponent();
 	// Return the First Actor within reach with physics body.
 	FHitResult GetFirstPhysicsBodyInReach() const;
-	PlayerReachInfo GetPlayerReachInfo() const;
+	FPlayerReachInfo GetPlayerReachInfo() const;
 };

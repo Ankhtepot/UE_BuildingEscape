@@ -47,5 +47,5 @@ private:
 		AActor* ActorThatOpen;
 
 	float InitialDoorRotation;
-	float LastTimeOpenned = 0.f;
+	float LastTimeOpened = 0.f;
 };
