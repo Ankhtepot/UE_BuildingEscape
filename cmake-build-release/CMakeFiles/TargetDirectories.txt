@@ -1,0 +1,15 @@
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/UE4Editor-Win64-DebugGame.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/UE4Game-Win64-DebugGame.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/UE4Editor-Win64-Shipping.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/UE4Editor.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/BuildingEscape-Win64-Shipping.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/UE4Game-Win64-Shipping.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/UE4Game.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/BuildingEscape-Win64-DebugGame.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/BuildingEscape.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/BuildingEscapeEditor-Win64-DebugGame.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/BuildingEscapeEditor-Win64-Shipping.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/BuildingEscapeEditor.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/FakeTarget.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/edit_cache.dir
+D:/Unreal/Unreal projects/course/BuildingEscape/cmake-build-release/CMakeFiles/rebuild_cache.dir
